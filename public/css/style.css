@@ -33,7 +33,7 @@ a:hover {
 }
 
 .container {
-  max-width: 960px;
+  max-width: 100%;
   padding: 1rem 4rem;
   margin: auto;
   overflow: hidden;
@@ -160,7 +160,12 @@ input[type="search"] {
   flex-basis: 600px;
 }
 
-/* Gigs */
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
 .gig {
   background: var(--bg-color);
   border-bottom: 4px solid var(--primary-color);

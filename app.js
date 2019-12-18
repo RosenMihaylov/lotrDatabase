@@ -19,7 +19,7 @@ app.set("view engine", "handlebars");
 //Set static folder
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => res.send("Index"));
+app.get("/", (req, res) => res.render("Index", { layot: "landing" }));
 
 //cards routs
 app.use("/cards", require("./routs/cards"));
