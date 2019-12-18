@@ -1,0 +1,19 @@
+<section id="gigs" class="container">
+    <h1>All Cards</h1>
+    {{#each cards}}
+    <div class="gig">
+        <h6>id:{{id}}</h6>
+        <h2>Side: {{side}}</h2>
+        <h3>Name: {{name}} {{subname}}</h3>
+        <h6>Sub name:</h6>
+        <p>Twilight cost{{twilight}}</p>
+        <p>Strenght: {{strenght}}</p>
+        <p>Vitality: {{vitality}}</p>
+        <a href="{{cardImage}}">Image</a>
+        <p>CardText{{cardText}}</p>
+    </div>
+    {{else}}
+    <p>No cards Available</p>
+    {{/each}}
+
+</section>
