@@ -93,8 +93,8 @@ router.post("/add", (req, res) => {
 
 //Search for a card
 router.get("/search", (req, res) => {
-  const { term } = req.query;
-  Card.findAll({ where: { side: { [Op.like]: term } } })
+  let { term } = req.query;
+  Card.findAll({ where: { name: { [Op.like]: term } } })
     .then(cards => res.render("cards", { cards }))
     .catch(err => console.log(err));
 });
