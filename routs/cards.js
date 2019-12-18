@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config/database");
 const Card = require("../models/Cards");
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 // Get Card list
 router.get("/", (req, res) =>
@@ -87,6 +89,14 @@ router.post("/add", (req, res) => {
       .catch(err => console.log(err));
   }
   //
+});
+
+//Search for a card
+router.get("/search", (req, res) => {
+  const { term } = req.query;
+  Card.findAll({ where: { side: { [Op.like]: term } } })
+    .then(cards => res.render("cards", { cards }))
+    .catch(err => console.log(err));
 });
 
 module.exports = router;
