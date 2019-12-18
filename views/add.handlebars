@@ -1,33 +1,55 @@
 <section id="add" class="container">
     <div class="form-wrap">
-        <h1>Add A Gig</h1>
-        <p>Your contact email will be shared with registered users to apply to your gig</p>
-        <form>
+        <h1>Add A Card</h1>
+        {{#each errors}}
+        <div class="error">
+            <p>
+                {{text}}
+            </p>
+        </div>
+        {{/each}}
+        <form action="/cards/add" method="POST">
             <div class="input-group">
-                <label for="title">Gig Title</label>
-                <input type="text" name="title" id="title" class="input-box"
-                    placeholder="eg. Small Wordpress website, React developer" maxlength="100" required>
+                <label for="side">Side:</label>
+                <input type="text" name="side" id="side" class="input-box"
+                    placeholder="Chose which side this card will be fighting for" maxlength="100" value="{{side}}">
             </div>
             <div class="input-group">
-                <label for="technologies">Technologies Needed</label>
-                <input type="text" name="technologies" id="technologies" class="input-box"
-                    placeholder="eg. javascript, react, PHP" maxlength="100">
+                <label for="Name">Name:</label>
+                <input type="text" name="Name" id="Name" class="input-box" placeholder="Chose the card name"
+                    maxlength="100" value="{{name}}">
             </div>
             <div class="input-group">
-                <label for="budget">Budget (Leave blank for unknown)</label>
-                <input type="number" name="budget" id="budget" class="input-box" placeholder="eg. 500, 5000, 10000">
+                <label for="subname">Subname:</label>
+                <input type="text" name="subname" id="subname" class="input-box" placeholder="Chose the card sub name"
+                    maxlength="100" value="{{subname}}">
             </div>
             <div class="input-group">
-                <label for="description">Gig Description</label>
-                <textarea name="description" id="description" class="input-box"
-                    placeholder="Describe the details of the gig" rows="10" required></textarea>
+                <label for="Twilight">Twilight:</label>
+                <input type="number" name="Twilight" id="Twilight" class="input-box"
+                    placeholder="Chose the card Twilight cost" maxlength="100" value="{{twilight}}">
             </div>
             <div class="input-group">
-                <label for="budget">Contact Email</label>
-                <input type="email" name="contact_email" id="contactemail" class="input-box"
-                    placeholder="Enter an email" required>
+                <label for="Strenght">Strenght:</label>
+                <input type="number" name="Strenght" id="Strenght" class="input-box"
+                    placeholder="Chose the card Strenght cost" maxlength="100" value="{{strenght}}">
             </div>
-            <input type="submit" value="Add Gig" class="btn btn-reverse">
+            <div class="input-group">
+                <label for="Vitality">Vitality:</label>
+                <input type="number" name="Vitality" id="Vitality" class="input-box"
+                    placeholder="Chose the card Vitality" maxlength="100" value="{{vitality}}">
+            </div>
+            <div class="input-group">
+                <label for="cardImage">Card Image:</label>
+                <input type="text" name="cardImage" id="cardImage" class="input-box"
+                    placeholder="Chose the link for card Image" maxlength="100" value="{{cardImage}}">
+            </div>
+            <div class="input-group">
+                <label for="cardText">Card Text:</label>
+                <input type="text" name="cardText" id="cardText" class="input-box" placeholder="Chose the Card Text"
+                    maxlength="100" value="{{cardText}}">
+            </div>
+            <input type="submit" value="Add Card" class="btn btn-reverse">
         </form>
     </div>
 </section>

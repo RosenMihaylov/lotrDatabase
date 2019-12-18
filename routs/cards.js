@@ -19,18 +19,6 @@ router.get("/add", (req, res) => res.render("add"));
 
 //add a card
 router.post("/add", (req, res) => {
-  const data = {
-    side: "fellowhip",
-    name: "Aragorn",
-    subname: "Elessar",
-    twilight: 4,
-    strenght: 8,
-    vitality: 4,
-    cardImage: "http://Cardstcgwiki.com/wiki/_media/cards:Cards01089.jpg",
-    cardText:
-      "Ranger. Maneuver: Exert Aragorn to make him defender +1 until the regroup phase."
-  };
-
   let {
     side,
     name,
@@ -40,21 +28,65 @@ router.post("/add", (req, res) => {
     vitality,
     cardImage,
     cardText
-  } = data;
+  } = req.body;
 
-  //Insert into Table
-  Card.create({
-    side,
-    name,
-    subname,
-    twilight,
-    strenght,
-    vitality,
-    cardImage,
-    cardText
-  })
-    .then(card => res.redirect("/cards"))
-    .catch(err => console.log(err));
+  let errors = [];
+
+  // validate fields
+  if (!side) {
+    errors.push({ text: "Please add Side" });
+  }
+  if (!name) {
+    errors.push({ text: "Please add name" });
+  }
+  if (!subname) {
+    errors.push({ text: "Please add subname" });
+  }
+  if (!twilight) {
+    errors.push({ text: "Please add twilight" });
+  }
+  if (!strenght) {
+    errors.push({ text: "Please add strenght" });
+  }
+  if (!vitality) {
+    errors.push({ text: "Please add vitality" });
+  }
+  if (!cardImage) {
+    errors.push({ text: "Please add a link to the card Image" });
+  }
+  if (!cardText) {
+    errors.push({ text: "Please add card Text" });
+  }
+  console.log(errors.length);
+  //Check for errors
+  if (errors.length > 0) {
+    res.render("add", {
+      errors,
+      side,
+      name,
+      subname,
+      twilight,
+      strenght,
+      vitality,
+      cardImage,
+      cardText
+    });
+  } else {
+    //Insert into Table
+    Card.create({
+      side,
+      name,
+      subname,
+      twilight,
+      strenght,
+      vitality,
+      cardImage,
+      cardText
+    })
+      .then(card => res.redirect("/cards"))
+      .catch(err => console.log(err));
+  }
+  //
 });
 
 module.exports = router;
